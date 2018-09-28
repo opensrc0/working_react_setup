@@ -2,6 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 import AssetsPlugin from 'assets-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
+import DashboardPlugin from 'webpack-dashboard/plugin';
 
 const __APP_ENV__ = process.env.APP_ENV;
 const __APP_PUBLIC_PATH__ = process.env.APP_PUBLIC_PATH;
@@ -13,6 +14,9 @@ var APP_DIR = path.resolve(__dirname, './application/client');
 const config = {
 	entry: {
 		main: APP_DIR + '/client.js',
+		vendor: [
+			'./application/client/vendor/modules/modules.js',
+		],
 	},
 	mode: 'development',
 	output: {
@@ -35,6 +39,17 @@ const config = {
 		contentBase: BUILD_DIR,
 		headers: { 'Access-Control-Allow-Origin': '*' },
 	},
+	optimization: {
+		splitChunks: {
+		  cacheGroups: {
+			commons: {
+			  test: /[\\/]node_modules[\\/]/,
+			  name: 'vendors',
+			  chunks: 'all'
+			}
+		  }
+		}
+	},
 	plugins: [
 		new webpack.NoEmitOnErrorsPlugin(),
 		new CleanWebpackPlugin(['./build/client']),
@@ -46,7 +61,9 @@ const config = {
 			path: path.resolve('./build/client'),
 			prettyPrint: true,
 		}),
+		new webpack.NamedModulesPlugin(),
 	],
+	
 };
 
 module.exports = config;

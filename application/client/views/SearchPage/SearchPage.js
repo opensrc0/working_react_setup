@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './homePage.css';
+import './searchPage.css';
 
-class HomePage extends Component {
+class SearchPage extends Component {
 
     componentDidMount = () => {
       console.log('client');
@@ -9,9 +9,9 @@ class HomePage extends Component {
 
     render() {
       return (
-        <div>Home Page found</div>
+        <div>Search Page found</div>
       )
     }
 }
 
-export default HomePage;
+export default SearchPage;

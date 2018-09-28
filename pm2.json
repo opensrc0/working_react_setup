@@ -8,7 +8,7 @@
       "log_date_format" : "YYYY-MM-DD HH:mm Z"
     }, {
       "name": "frontend-production",
-      "script": "./build/server/index.js",
+      "script": "./build/server/server.js",
       "instances": 0,
       "exec_mode": "cluster",
       "merge_logs": true,

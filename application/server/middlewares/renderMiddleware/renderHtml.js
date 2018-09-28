@@ -1,6 +1,7 @@
 /* eslint-disable max-len, import/no-unresolved */
-// import { assets } from './fragments';
-// import assetsManifest from '../../../../build/client/assetsManifest.json';
+import { assets } from './fragments';
+// import assetsManifest from './../../../../ ../client/assetsManifest.json';
+
 export default (app, route, req) => `
   <!doctype html>
   <html lang="en">
@@ -8,6 +9,7 @@ export default (app, route, req) => `
     </head>
     <body>
       <div id="root">${app}</div>
-      <script src="http://localhost:8080/build/client/js/main.js"></script>
+      <script src="${assets.main.js}"></script>
+      <script src="${assets.vendors.js}"></script>
     </body>
   </html>`;
