@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
-
+import * as routeService from './routeService';
 import createBrowserHistory from 'history/createBrowserHistory';
 // import cookies from 'js-cookie';
 // import makeCreateStore from './services/store/makeCreateStore';
@@ -29,24 +29,7 @@ ReactDOM.hydrate(
 
       <Router history={history}>
         <Switch>
-            {
-                routes.map((route, i) => (
-                    <Route
-                    key={route.key || i}
-                    path={route.path}
-                    exact={route.exact}
-                    strict={route.strict}
-                    render={(props) => {
-                        return (
-                        <route.component
-                            {...props}
-                            route={route}
-                        />
-                        );
-                    }}
-                    />
-                ))
-            }
+            {routeService.renderRoutes(routes)}
         </Switch>
     </Router>
   ,

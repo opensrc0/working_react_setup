@@ -4,6 +4,8 @@ import { renderToString } from 'react-dom/server';
 import { Router, Route, Switch } from 'react-router-dom';
 import createMemoryHistory from 'history/createMemoryHistory';
 import renderHtml from './renderHtml';
+import * as routeService from './../../../client/routeService';
+import execComponentWillServerRender from './execComponentWillServerRender';
 import routes from '../../../client/routes';
 
 const APP_SSR = process.env.APP_SSR === 'true';
@@ -12,30 +14,24 @@ export default async (req, res) => {
   const history = createMemoryHistory();
   history.replace(req.originalUrl);
   const branches = matchRoutes(routes, req.originalUrl.split('?')[0]);
+  const branch = branches[branches.length - 1];
+
+  // const sheet = new ServerStyleSheet();
+  const store = ''; //makeCreateStore({ history })();
+  const chunks = [];
+  if (APP_SSR) {
+    await execComponentWillServerRender(
+      branches,
+      { store, route: branch.route, history, req, res },
+    );
+  }
 
   // RenderToStaring is built-in function to convert react to html form fto make SEO friendly
   // To use of JSX use react in preset in .babelrc
   const app = renderToString(
       <Router history={history}>
         <Switch>
-          {
-            routes.map((route, i) => (
-              <Route
-                key={route.key || i}
-                path={route.path}
-                exact={route.exact}
-                strict={route.strict}
-                render={(props) => {
-                  return (
-                    <route.component
-                      {...props}
-                      route={route}
-                    />
-                  );
-                }}
-              />
-            ))
-          }
+          {routeService.renderRoutes(routes)}
         </Switch>
       </Router>
   );

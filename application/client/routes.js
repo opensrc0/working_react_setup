@@ -13,7 +13,7 @@ const routes = [{
       component: HomePage,
     },
     {
-      path: '/search',
+      path: '/search/',
       exact: true,
       strict: true,
       name: 'search',

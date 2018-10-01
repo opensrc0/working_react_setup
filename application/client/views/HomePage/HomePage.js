@@ -6,9 +6,6 @@ class HomePage extends Component {
 
     componentDidMount = () => {
       console.log('client');
-      // window.addEventListener('click', () => {
-      //   alert('Home page');
-      // });
     }
 
     componentWillUnmount() {
@@ -17,10 +14,10 @@ class HomePage extends Component {
 
     render() {
       return (
-        <div>
+        <React.Fragment>
           Home Page found
-            <Link to="./search">Search</Link>
-        </div>
+            <Link to="/search/">Search</Link>
+        </React.Fragment>
       )
     }
 }

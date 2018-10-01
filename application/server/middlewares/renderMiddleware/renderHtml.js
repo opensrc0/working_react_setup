@@ -1,12 +1,11 @@
 /* eslint-disable max-len, import/no-unresolved */
 import { assets } from './fragments';
-// import assetsManifest from './../../../../ ../client/assetsManifest.json';
-console.log(assets, 'hey');
 
 export default (app, route, req) => `
   <!DOCTYPE html>
   <html lang="en">
     <head>
+    <link rel="shortcut icon" href="https://www.reliancedigital.in/_ui/responsive/common/static/favicons/favicon-32x32.png">
     </head>
     <body>
       <div id="root">${app}</div>
