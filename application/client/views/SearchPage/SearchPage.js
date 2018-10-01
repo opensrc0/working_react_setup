@@ -5,6 +5,12 @@ class SearchPage extends Component {
 
     componentDidMount = () => {
       console.log('client');
+      // window.addEventListener('click', () => {
+      //   alert('search page');
+      // });
+    }
+    componentWillUnmount() {
+      console.log('unmount search');
     }
 
     render() {

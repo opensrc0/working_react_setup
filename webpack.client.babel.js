@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import AssetsPlugin from 'assets-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import DashboardPlugin from 'webpack-dashboard/plugin';
+// import ExtractCssChunks from 'extract-css-chunks-webpack-plugin';
 
 const __APP_ENV__ = process.env.APP_ENV;
 const __APP_PUBLIC_PATH__ = process.env.APP_PUBLIC_PATH;
@@ -18,6 +19,7 @@ const config = {
 			'./application/client/vendor/modules/modules.js',
 		],
 	},
+	devtool: 'inline-source-map',
 	mode: 'development',
 	output: {
 		path: BUILD_DIR,
@@ -44,7 +46,7 @@ const config = {
 		  cacheGroups: {
 			commons: {
 			  test: /[\\/]node_modules[\\/]/,
-			  name: 'vendors',
+			  name: 'vendor',
 			  chunks: 'all'
 			}
 		  }

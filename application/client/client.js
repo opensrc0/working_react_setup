@@ -14,8 +14,8 @@ import createBrowserHistory from 'history/createBrowserHistory';
 // import * as authService from './services/auth/authService';
 // import * as abService from './services/ab/abService';
 // import * as routeService from './services/route/routeService';
-import routes from './route';
-
+import routes from './routes';
+console.log(routes, 'client js');
 // authService.verifyDomain(window.location.origin);
 const history = createBrowserHistory();
 // const store = makeCreateStore({ history })(window.__INITIAL_STATE__);

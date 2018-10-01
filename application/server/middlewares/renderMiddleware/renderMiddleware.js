@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server';
 import { Router, Route, Switch } from 'react-router-dom';
 import createMemoryHistory from 'history/createMemoryHistory';
 import renderHtml from './renderHtml';
-import routes from '../../../client/route';
+import routes from '../../../client/routes';
 
 const APP_SSR = process.env.APP_SSR === 'true';
 
