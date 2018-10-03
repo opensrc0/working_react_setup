@@ -4,6 +4,7 @@ import { renderToString } from 'react-dom/server';
 import { Router, Route, Switch } from 'react-router-dom';
 import createMemoryHistory from 'history/createMemoryHistory';
 import renderHtml from './renderHtml';
+import CreateStore from './../../../client/store/store';
 import * as routeService from './../../../client/routeService';
 import execComponentWillServerRender from './execComponentWillServerRender';
 import routes from '../../../client/routes';
@@ -17,9 +18,9 @@ export default async (req, res) => {
   const branch = branches[branches.length - 1];
 
   // const sheet = new ServerStyleSheet();
-  const store = ''; //makeCreateStore({ history })();
+  const store = CreateStore({ history, isBrowser: false })();
   const chunks = [];
-  if (APP_SSR) {
+  if (true) {
     await execComponentWillServerRender(
       branches,
       { store, route: branch.route, history, req, res },

@@ -6,6 +6,8 @@ export default (branches, ctx) => {
       ...ctx,
     };
 
+    // Because of react-loadable, we have to use this if condition
+    // react loadable will load js page wise asyncronuously but here we need componentWillServerRender thats why we are using component.preload
     if (component.preload) {
       const loadedComponent = await component.preload();
       component = loadedComponent.default;
