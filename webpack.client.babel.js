@@ -15,18 +15,18 @@ var APP_DIR = path.resolve(__dirname, './application/client');
 const config = {
 	entry: {
 		main: APP_DIR + '/client.js',
-		vendor: [
-			'./application/client/vendor/modules/modules.js',
-		],
 	},
+
 	devtool: 'inline-source-map',
 	mode: 'development',
+
 	output: {
 		path: BUILD_DIR,
 		publicPath: 'http://localhost:8080/build/client/',
-		filename: 'js/[name].js',
-		chunkFilename: 'js/[name].js',
+		filename: 'js/[name].[hash].js',
+		chunkFilename: 'js/[name].[hash].js',
 	},
+
 	module: {
 		rules: [
 		  // Transpile .js file es6 to es5 and exclude node_module, we need to include that other wise error will come
@@ -37,10 +37,12 @@ const config = {
 		 
 		],
 	},
+
 	devServer: {
 		contentBase: BUILD_DIR,
 		headers: { 'Access-Control-Allow-Origin': '*' },
 	},
+
 	optimization: {
 		splitChunks: {
 		  cacheGroups: {
@@ -52,6 +54,7 @@ const config = {
 		  }
 		}
 	},
+	
 	plugins: [
 		new webpack.NoEmitOnErrorsPlugin(),
 		new CleanWebpackPlugin(['./build/client']),
