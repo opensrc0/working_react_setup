@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import * as routeService from './../routeService';
 import './wrapper.css';
 
-
 class Wrapper extends Component {
 
     componentDidMount = () => {

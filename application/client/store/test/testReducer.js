@@ -1,6 +1,3 @@
-// import cookies from 'js-cookie';
-// import qs from 'query-string';
-
 const SET_UTM_PARAMS = 'SET_UTM_PARAMS';
 
 const initialState = {
