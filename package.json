@@ -6,8 +6,7 @@
   "scripts": {
     "start": "npm run local",
     "prelocal": "pm2 kill",
-    "local": "run-p local:*",
-    "local:variable": "SET APP_SSR=true APP_PUBLIC_PATH=http://localhost:8080/build/client/ PORT=7000 APP_SSR=true NODE_ENV=development",
+    "local": "cross-env APP_SSR=true NODE_ENV=development PORT=7000 APP_PUBLIC_PATH=http://localhost:8080/build/client/ run-p local:*",
     "local:server-watch": "webpack --config ./webpack.server.babel.js --watch",
     "local:client-hotreload": "webpack-dev-server --config ./webpack.client.babel.js --hot",
     "local:multiple-node-server": "pm2 start pm2.json --only frontend-local",

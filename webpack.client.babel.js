@@ -3,28 +3,26 @@ import webpack from 'webpack';
 import AssetsPlugin from 'assets-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import DashboardPlugin from 'webpack-dashboard/plugin';
-// import ExtractCssChunks from 'extract-css-chunks-webpack-plugin';
 
-const __APP_ENV__ = process.env.APP_ENV;
+// const __APP_ENV__ = process.env.APP_ENV;
 const __APP_PUBLIC_PATH__ = process.env.APP_PUBLIC_PATH;
+const __BUILD_DIR__ = path.resolve(__dirname, './build/client');
+const __APP_DIR__ = path.resolve(__dirname, './application/client');
 const isProd = process.env.NODE_ENV === 'production';
-
-var BUILD_DIR = path.resolve(__dirname, './build/client');
-var APP_DIR = path.resolve(__dirname, './application/client');
 
 const config = {
 	entry: {
-		main: APP_DIR + '/client.js',
+		main: __APP_DIR__ + '/client.js',
 	},
 
 	devtool: 'inline-source-map',
 	mode: 'development',
 
 	output: {
-		path: BUILD_DIR,
-		publicPath: 'http://localhost:8080/build/client/',
-		filename: 'js/[name].[hash].js',
-		chunkFilename: 'js/[name].[hash].js',
+		path: __BUILD_DIR__,
+		publicPath: __APP_PUBLIC_PATH__,
+		filename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
+		chunkFilename: isProd ? 'js/[name].[hash].js' : 'js/[name].js',
 	},
 
 	module: {
@@ -39,7 +37,7 @@ const config = {
 	},
 
 	devServer: {
-		contentBase: BUILD_DIR,
+		contentBase: __BUILD_DIR__,
 		headers: { 'Access-Control-Allow-Origin': '*' },
 	},
 
