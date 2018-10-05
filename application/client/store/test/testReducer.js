@@ -1,10 +1,10 @@
-const SET_UTM_PARAMS = 'SET_UTM_PARAMS';
+const TEST = 'TEST';
 
 const initialState = {
-  utmParams: {
-    utm_source: '',
-    utm_medium: '',
-    utm_campaign: '',
+  testParams: {
+    test_source: '',
+    test_medium: '',
+    test_campaign: '',
   },
 };
 
@@ -12,10 +12,10 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case SET_UTM_PARAMS:
+    case TEST:
       return {
         ...state,
-        utmParams: payload,
+        testParams: payload,
       };
     default:
       return state;
