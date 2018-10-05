@@ -21,7 +21,8 @@ export default async (req, res) => {
   // const sheet = new ServerStyleSheet();
   const store = CreateStore({ history, isBrowser: false })();
   const chunks = [];
-  if (true) {
+
+  if (APP_SSR) {
     await execComponentWillServerRender(
       branches,
       { store, route: branch.route, history, req, res },

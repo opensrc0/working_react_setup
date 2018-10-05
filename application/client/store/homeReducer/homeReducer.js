@@ -1,3 +1,5 @@
+import { handle } from 'redux-pack';
+
 const TEST_SYNC_CALL = 'TEST_SYNC_CALL';
 const TEST_ASYNC_CALL = 'TEST_ASYNC_CALL';
 
@@ -16,50 +18,39 @@ export default (state = initialState, action) => {
         name: payload,
       };
     
-    case TEST_ASYNC_CALL:
-      return {
-        ...state,
+    case TEST_ASYNC_CALL: return handle(state, action, {
+      start: (s) => ({
+        ...s,
+      }),
+      success: (s) => ({
+        ...s,
         other: payload,
-      };
+      }),
+      failure: (s) => ({
+        ...s,
+      }),
+    });
     
     default:
       return state;
   }
 };
 
-// export const getTestData = (data) => ({
-//     type: TEST_SYNC_CALL,
-//     payload: data
-// });
-
-// export const setTestData = (data) => ({
-//   type: TEST_SYNC_CALL,
-//   payload: data
-// });
-
-
-// const setGoalList = (goalList) => {
-//   return {
-//       type: GET_GOAL_LIST,
-//       payload: goalList,
-//   }
-// }
-
 export const getTestData = (data) => (dispatch) => {
-    dispatch({
-        type: TEST_SYNC_CALL,
-        payload: data,
-    });    
+  dispatch({
+    type: TEST_SYNC_CALL,
+    payload: data,
+  });    
 };
 
 export const getAPIData = (data) => (dispatch) => {
-  fetch('https://sit-digital.ril.com/rildigitalws/v2/rrldigital/cms/pagedata?pageId=headerpage&pageType=contentPage')
+  dispatch({
+    type: TEST_ASYNC_CALL,
+    promise: fetch('https://sit-digital.ril.com/rildigitalws/v2/rrldigital/cms/pagedata?pageId=headerpage&pageType=contentPage')
     .then((response) => response.json())
     .then((response) => {
-      dispatch({
-          type: TEST_ASYNC_CALL,
-          payload: response,
-      }); 
-      console.log(response)
-    });
+      console.log(response);
+      return response;
+    }),
+  }); 
 };
