@@ -1,4 +1,4 @@
 export default {
-  hostUrl: 'http://localhost:7000',
-  webUrl: 'https://sit-digital.ril.com/',
+  hostUrl: 'https://sit-digital.ril.com',
+  webUrl: 'https://sit-digital.ril.com',
 };

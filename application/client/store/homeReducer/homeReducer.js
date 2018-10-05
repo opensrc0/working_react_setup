@@ -43,14 +43,10 @@ export const getTestData = (data) => (dispatch) => {
   });    
 };
 
-export const getAPIData = (data) => (dispatch) => {
+export const getAPIData = (data) => (dispatch, getState, { api }) => {
   dispatch({
     type: TEST_ASYNC_CALL,
-    promise: fetch('https://sit-digital.ril.com/rildigitalws/v2/rrldigital/cms/pagedata?pageId=headerpage&pageType=contentPage')
-    .then((response) => response.json())
-    .then((response) => {
-      console.log(response);
-      return response;
-    }),
+    promise: api.get('/rildigitalws/v2/rrldigital/cms/pagedata', 'pageId=headerpage&pageType=contentPage')
+      .then((response) => response),
   }); 
 };
